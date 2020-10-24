@@ -3,11 +3,12 @@
 const inputSearch = document.querySelector('.js-input');
 const buttonSearch = document.querySelector('.js-button');
 const resultList = document.querySelector('.js-results');
+
 // favorite el div no el ul
 const favorite = document.querySelector('.js-favorite');
 // const buttonRemove = document.querySelector('.js-button-remove');
-
-// let favorites = []?? supongo que hay que hacer otra xra favoritos por lo que dijo migul;
+const imageTVShowDefault =
+  'https://via.placeholder.com/210x295/ffffff/666666/?';
 
 // PETICIÓN AL SERVIDOR
 // tengo que hacer una constante para luego poder pintarla,
@@ -25,7 +26,8 @@ function getApiData(datoBusqueda) {
     });
 }
 
-function handleButtonClick() {
+function handleButtonClick(evento) {
+  console.log('evento', evento);
   getApiData(inputSearch.value);
   console.log();
 }
@@ -38,32 +40,44 @@ function paintProducts() {
   let productsCode = '';
   for (let i = 0; i < searchResults.length; i++) {
     let titleTVShow = searchResults[i].show.name;
-    let imageTVShow = 'https://via.placeholder.com/210x295/ffffff/666666/?';
-    let classItem = 'item-list-' + (i + 1);
-
+    let idTVShow = searchResults[i].show.id;
+    let imageTVShow = imageTVShowDefault;
     if (searchResults[i].show.image) {
       imageTVShow = searchResults[i].show.image.medium;
     }
 
-    resultList.innerHTML +=
-      '<li class="' +
-      classItem +
-      '" onclick="selectShow(' +
-      i +
-      ')"><img src=' +
+    productsCode +=
+      '<li class="js-item" id="' +
+      idTVShow +
+      '"><img src=' +
       imageTVShow +
       '><h3>' +
       titleTVShow +
       '</h3></li>';
-
-    console.log('results');
-
-    // resultList.innerHTML = productsCode; para comprobar que esta bien
-    // console.log('pintar');
   }
+  resultList.innerHTML = productsCode;
+  getElement();
+}
+let favorites = [];
+
+function getElement() {
+  const items = document.querySelectorAll('.js-item');
+  console.log('voy a mostrar los items', items, 'ya estan pintadas');
+  for (let i = 0; i < items.length; i++) {
+    items[i].addEventListener('click', addTofavorites);
+  }
+}
+// funcion para unir el id del favorito seleccionado con el del objeto
+function addTofavorites(ev) {
+  let element = ev.currentTarget;
+  console.log(element.id);
+  let itemSelected = searchResults.find((itemsResult) => {
+    console.log(itemsResult);
+    return itemsResult.show.id === parseInt(element.id);
+  });
+  console.log(itemSelected);
 }
 
 function selectShow(index) {
   console.log('selected', searchResults[index].show.name);
 }
-// button.click();
