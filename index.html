@@ -10,25 +10,26 @@
     <header>
       <h1 class="title">Buscador de series</h1>
     </header>
-    <div>
-      <form action="" method="POST" class="form" id="form">
-        <input type="text" class="js-input" />
-        <button type="button" id="" class="js-button">Buscar</button>
-      </form>
+    <div class="container">
+      <div>
+        <form action="" method="POST" class="form" id="form">
+          <input type="text" class="js-input" />
+          <button type="button" id="" class="js-button">Buscar</button>
+        </form>
+      </div>
+      <section class="js-results-container results-container">
+        <div class="js-result-list result-list">
+          <ul class="js-results results"></ul>
+        </div>
+      </section>
+      <section>
+        <div class="js-favorite favorite">
+          <h2 class="subtitle">Mis series favoritas</h2>
+          <ul class="js-favorite-list favorite-list"></ul>
+          <button type="button" id="" class="js-button-remove">Borrar</button>
+        </div>
+      </section>
     </div>
-    <section class="js-results-container">
-      <div class="js-result-list">
-        <ul class="js-results"></ul>
-      </div>
-    </section>
-    <section>
-      <div class="js-favorite">
-        <h2 class="subtitle">Mis series favoritas</h2>
-        <ul class="js-favorite-list"></ul>
-        <button type="button" id="" class="js-button-remove">Borrar</button>
-      </div>
-    </section>
-
     <script type="text/javascript" src="./js/main.js"></script>
   </body>
 </html>
