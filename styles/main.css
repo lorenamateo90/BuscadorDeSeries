@@ -2,13 +2,42 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: cyan;
 }
-/* HEADER */
+.body {
+  background: #dedede;
+}
 .title {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   text-transform: uppercase;
-  font-size: 40px;
-  color: blueviolet;
+  font-size: 50px;
+}
+.subtitle {
+  font-size: 30px;
+}
+.container {
+  width: 100%;
+}
+.results {
+  width: 70%;
+  float: right;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.favorite-list {
+  width: 20%;
+  float: left;
+}
+
+.js-item {
+  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
+  background: #9c9c9c;
+}
+
+.js-fav-item {
+  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
+  background: pink;
 }
