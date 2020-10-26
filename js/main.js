@@ -5,10 +5,12 @@ const buttonSearch = document.querySelector('.js-button');
 const resultList = document.querySelector('.js-results');
 const favoriteList = document.querySelector('.js-favorite-list');
 const favorite = document.querySelector('.js-favorite');
-let searchResults = [];
-let favorites = [];
 const imageTVShowDefault =
   'https://via.placeholder.com/210x295/ffffff/666666/?';
+
+// ARRAYS PRINCIPALES (SERIES BUSCADAS Y FAVORITOS)
+let searchResults = [];
+let favorites = [];
 
 // PETICIÓN AL SERVIDOR
 function getApiData(value) {
@@ -22,6 +24,7 @@ function getApiData(value) {
       paintProducts();
     });
 }
+
 // EVENTO BOTÓN PARA BUSCAR LAS SERIES QUE PONGAN EN EL INPUT
 function handleButtonClick(evento) {
   getApiData(inputSearch.value);
@@ -50,26 +53,25 @@ function paintProducts() {
   resultList.innerHTML = productsCode;
   getElement();
 }
+// FUNCIÓN PARA ESCUCHAR EL EVENTO EN LAS SERIES BUSCADAS
 function getElement() {
   const items = document.querySelectorAll('.js-item');
   for (let i = 0; i < items.length; i++) {
     items[i].addEventListener('click', addTofavorites);
   }
 }
+// FUNCIÓN PARA EJECUTAR LAS ACCIONES NECEARIAS EN LOS ELEMENTOS CLICKADOS.
 function addTofavorites(ev) {
   let element = ev.currentTarget;
-
-  let itemSelected = searchResults.find((itemsResult) => {
+  let itemSelected = searchResults.find(function (itemsResult) {
     return itemsResult.show.id === parseInt(element.id);
   });
-
   if (!isFavorite(itemSelected)) {
     favorites.push(itemSelected);
     setLocalStorage();
     paintFavorite(itemSelected);
   }
 }
-
 function isFavorite(item) {
   let existItem = false;
   for (let i = 0; i < favorites.length; i++) {
@@ -79,7 +81,7 @@ function isFavorite(item) {
   }
   return existItem;
 }
-
+// FUNCION PARA PINTAR LOS ELEMENTOS FAVORITOS SELECCIONADOS
 function paintFavorite(itemSelected) {
   let itemFavoriteList = '';
   let titleTVShow = itemSelected.show.name;
@@ -104,7 +106,6 @@ function paintFavorite(itemSelected) {
 function setLocalStorage() {
   localStorage.setItem('favoriteList', JSON.stringify(favorites));
 }
-
 function getLocalStore() {
   if (localStorage.getItem('favoriteList')) {
     favorites = JSON.parse(localStorage.getItem('favoriteList'));
@@ -113,5 +114,4 @@ function getLocalStore() {
     }
   }
 }
-
 getLocalStore();
