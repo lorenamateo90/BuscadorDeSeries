@@ -14,7 +14,7 @@ let favorites = [];
 
 // PETICIÓN AL SERVIDOR
 function getApiData(value) {
-  fetch('http://api.tvmaze.com/search/shows?q=' + value)
+  fetch('https://api.tvmaze.com/search/shows?q=' + value)
     .then(function (response) {
       return response.json();
     })
