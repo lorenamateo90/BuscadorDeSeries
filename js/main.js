@@ -5,6 +5,8 @@ const buttonSearch = document.querySelector('.js-button');
 const resultList = document.querySelector('.js-results');
 const favoriteList = document.querySelector('.js-favorite-list');
 const favorite = document.querySelector('.js-favorite');
+const btn = document.querySelector('.js-btn');
+
 const imageTVShowDefault =
   'https://via.placeholder.com/210x295/ffffff/666666/?';
 
@@ -53,6 +55,14 @@ function paintProducts() {
   resultList.innerHTML = productsCode;
   getElement();
 }
+function haddlelog() {
+  for (const itemResult of searchResults) {
+    let titleTVShow = itemResult.show.name;
+    console.log(titleTVShow);
+  }
+}
+btn.addEventListener('click', haddlelog);
+
 // FUNCIÓN PARA ESCUCHAR EL EVENTO EN LAS SERIES BUSCADAS
 function getElement() {
   const items = document.querySelectorAll('.js-item');
